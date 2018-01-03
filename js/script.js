@@ -1,14 +1,36 @@
+// Фиксированная шапка при скролле
+window.onscroll = function () {
+  myFunction()
+};
+
+var header = document.getElementById("navbarSticky");
+var sticky = header.offsetTop;
+var desktops = document.documentElement.clientWidth > 767;
+
+function myFunction() {
+  if (desktops && window.pageYOffset >= sticky) {
+    header.classList.add("navbar-sticky");
+  } else if (desktops && window.pageYOffset < sticky) {
+    header.classList.remove("navbar-sticky");
+  }
+}
+
+
 // Карта
 ymaps.ready(init);
-var myMap, 
+var myMap,
   myPlacemark;
 
-function init(){ 
+function init(){
   myMap = new ymaps.Map("map", {
     center: [42.973462, 47.483568],
     zoom: 18,
     controls: []
   });
+
+  if (document.documentElement.clientWidth < 576) {
+    myMap.setCenter([42.973462, 47.484768], 15);
+  }
 
   myMap.controls.add('fullscreenControl', {
     float: 'none',
@@ -19,7 +41,7 @@ function init(){
   });
 
   myMap.controls.add('zoomControl', {
-    float: 'none', 
+    float: 'none',
     position: {
       top: 60,
       right: 15
@@ -40,7 +62,7 @@ function init(){
     // её "ножки" (точки привязки).
     iconImageOffset: [-20, -53]
   });
-  
+
   myMap.geoObjects.add(myPlacemark);
 
   myMap.behaviors.disable('scrollZoom');

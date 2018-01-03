@@ -56,6 +56,38 @@ h2 {
   }
 }
 
+.form {
+  &-group {
+    margin-bottom: 10px;
+  }
+
+  &-control {
+    padding: .8rem 1rem;
+    font-size: 1rem;
+    color: #333;
+    border-radius: $radius;
+
+    &-lg {
+      padding: 1.3rem 1.5rem;
+    }
+
+    &:focus {
+      background-color: #fff;
+      border-color: $secondary-color;
+      box-shadow: 0 0 30px 10px rgba(38, 84, 190, .05);
+      box-shadow: 0 0 30px 10px rgba(103, 108, 184, .08);
+    }
+  }
+
+  textarea {
+    resize: none;
+  }
+
+  .btn {
+    border-radius: $radius;
+  }
+}
+
 .section {
   padding: 5rem 0;
 
@@ -108,14 +140,77 @@ h2 {
   object-fit: cover;
 }
 
+.modal {
+  .close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+  }
+
+  &-body {
+    padding: 2rem 4rem;
+  }
+
+  &-title {
+    margin-bottom: .3rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  &-desc {
+    font-size: 14px;
+    text-align: center;
+  }
+}
+
 /* ====================== Header ====================== */
 .main-header {
-  position: fixed;
-  z-index: 1000;
+  position: absolute;
   width: 100%;
 }
 
+.header-top {
+  padding: 5px 0;
+  color: #fff;
+  background-color: rgba(46, 48, 66, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
+}
+
+.header-widget {
+  display: flex;
+  align-items: center;
+  margin-left: 4rem;
+  font-size: .875rem;
+
+  svg {
+    fill: $primary-color;
+    margin-right: .6rem;
+  }
+
+  &-text a {
+    display: block;
+    color: #fff;
+
+    &:hover {
+      text-decoration: none;
+      color: $primary-color;
+    }
+
+    span {
+      display: block;
+      font-size: .7rem;
+      color: #ccc;
+    }
+  }
+}
+
 .navbar {
+  z-index: 100;
+  padding-top: 15px;
+  padding-bottom: 15px;
+
   &-dark {
     font-size: 14px;
     font-weight: 500;
@@ -125,7 +220,7 @@ h2 {
       .nav-link {
         margin-left: 1rem;
         margin-right: 1rem;
-        padding: 0.08rem 0;
+        padding: 0;
         color: #fff;
         border-bottom: 1px solid transparent;
 
@@ -145,6 +240,18 @@ h2 {
         }
       }
     }
+
+    .navbar-toggler {
+      border-color: $primary-color;
+
+      &:focus {
+        outline: none;
+      }
+
+      &-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#00b3cc' stroke-width='1' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+      }
+    }
   }
 
   &-brand {
@@ -152,21 +259,33 @@ h2 {
     padding: 0;
 
     img {
-      width: 180px;
-      height: auto;
+      width: 50px;
+
     }
   }
+
+  &-sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+    .navbar-brand {
+      display: block;
+    }
+  }
+
 }
 
 /* ====================== Promo ====================== */
 .promo {
-  padding: 200px 0 154px;
-  color: #fff;
-  background: url(../img/header-bg.jpg) no-repeat center;
+  padding: 280px 0 160px;
+  color: $secondary-color;
+  background: url(../img/header-bg.jpg) no-repeat left 25%;
   background-size: cover;
 
   &-title {
     position: relative;
+    max-width: 900px;
     margin-bottom: 1.5rem;
     padding-bottom: 1.5rem;
     font-size: 5rem;
@@ -185,7 +304,7 @@ h2 {
   }
 
   &-desc {
-    margin-bottom: 3rem;
+    margin-bottom: 0;
     font-size: 1.75rem;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, .4);
   }
@@ -195,7 +314,7 @@ h2 {
 .features {
   &-item {
     display: flex;
-    padding: 60px;
+    padding: 60px 3%;
     color: #fff;
     background-color: $primary-color;
 
@@ -220,6 +339,18 @@ h2 {
 
     .btn {
       margin-top: 1rem;
+    }
+
+    .table {
+      td {
+        padding-left: 0;
+        border: none;
+
+        &:last-child {
+          text-align: right;
+          padding-left: 5rem;
+        }
+      }
     }
   }
 }
@@ -281,9 +412,12 @@ h2 {
   }
 
   &-photo {
+    display: block;
     width: 130px;
     height: 130px;
     margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 50%;
     overflow: hidden;
     border: 3px solid #fff;
@@ -296,6 +430,7 @@ h2 {
   }
 
   &-text {
+    margin-bottom: 0;
     font-size: 1.2rem;
   }
 }
@@ -393,7 +528,7 @@ h2 {
 
 /* ====================== Footer ====================== */
 .main-footer {
-  padding: 1rem 0;
+  padding: 8px 0;
   font-size: .875rem;
   color: #fff;
   background-color: #2e3042;
@@ -401,6 +536,8 @@ h2 {
 
 .footer-logo img {
   max-width: 100%;
+  max-height: 40px;
+  width: auto;
   height: auto;
 }
 
@@ -418,6 +555,10 @@ h2 {
 
 /* ====================== Внутренние страницы ====================== */
 .page {
+  &-section {
+    padding-top: 140px;
+  }
+
   &-content {
     margin-bottom: 2rem;
     padding-bottom: 1rem;
